@@ -64,10 +64,6 @@ az postgres flexible-server migration --help
 
 The above command gives you the following output:
 
-<!---
-:::image type="content" source="./media/az-postgres-flexible-server-migration-help.png" alt-text="Screenshot of Azure Command Line Interface help." lightbox="./media/az-postgres-flexible-server-migration-help.png":::
---->
-
 ![CLI Pic1](./media/az-postgres-flexible-server-migration-help.png "CLI Pic1")
 
 The output lists the supported migration commands, along with their actions. Let's look at these commands in detail.
@@ -82,7 +78,7 @@ az postgres flexible-server migration create -- help
 
 The above command gives you the following result:
 
-:::image type="content" source="./media/az-postgres-flexible-server-migration-create.png" alt-text="Screenshot of the command for creating a migration." lightbox="./media/az-postgres-flexible-server-migration-create.png":::
+![CLI Pic2](./media/az-postgres-flexible-server-migration-create.png "CLI Pic2")
 
 It lists the expected arguments and has an example syntax for successfully creating a migration from the source server to the target server. Here's the CLI command to create a new migration:
 
@@ -177,6 +173,10 @@ For example:
 az postgres flexible-server migration update --subscription 11111111-1111-1111-1111-111111111111 --resource-group my-learning-rg --name myflexibleserver --migration-name CLIMigrationExample --setup-replication
 ```
 
+This command is required to advance the migration is the flexible server is waiting in the `WaitingForLogicalReplicationSetupRequestOnSourceDB` state.
+
+![CLI Pic7](./media/az-postgres-flexible-server-migration-logical-replication.png "CLI Pic7")
+
 ### Cutover the migration
 
 After the base data migration is complete, the migration task moves to `WaitingForCutoverTrigger` substate. In this state, user can trigger cutover from the portal by selecting the migration name in the migration grid or through CLI using the command below.
@@ -188,13 +188,13 @@ az postgres flexible-server migration update --subscription 11111111-1111-1111-1
 ```
 
 Before initiating cutover it is important to ensure that writes to the source are stopped and Pending changes to be written to the Target are zero. This information can be obtained using the [migration show command](#monitor-the-migration).
-Here's a snapshot of the response when initiating the cutover:
+Here's a snapshot of the migration before initiating the cutover:
 
-:::image type="content" source="./media/az-postgres-flexible-server-migration-cutover-command.png" alt-text="Screenshot of Command Line Interface migration Show." lightbox="./media/az-postgres-flexible-server-migration-cutover-command.png":::
+![CLI Pic3](./media/az-postgres-flexible-server-migration-cutover.png "CLI Pic3")
 
 After cutover is initiated, pending data captured during CDC is written to the target and migration is now complete.
 
-:::image type="content" source="./media/az-postgres-flexible-server-migration-cutover-success.png" alt-text="Screenshot of Command Line Interface migration Show." lightbox="./media/az-postgres-flexible-server-migration-cutover-success.png":::
+![CLI Pic4](./media/az-postgres-flexible-server-migration-cutover-success.png "CLI Pic4")
 
 If the cutover is not successful, the migration moves to `Failed` state.
 
@@ -240,7 +240,7 @@ az postgres flexible-server migration show [--subscription]
 
 The `migration_name` parameter is the name you have assigned to the migration during the `create` command. Here's a snapshot of the sample response from the CLI command for showing details:
 
-:::image type="content" source="./media/az-postgres-flexible-server-migration-show.png" alt-text="Screenshot of Command Line Interface migration Show." lightbox="./media/az-postgres-flexible-server-migration-show.png":::
+![CLI Pic5](./media/az-postgres-flexible-server-migration-show.png "CLI Pic5")
 
 For more information about this command, use the `help` parameter:
 
@@ -292,7 +292,7 @@ For more information about this command, use the `help` parameter:
 
 The command gives you the following output:
 
-:::image type="content" source="./media/az-postgres-flexible-server-migration-update-cancel-help.png" alt-text="Screenshot of Azure Command Line Interface Cancel." lightbox="./media/az-postgres-flexible-server-migration-update-cancel-help.png":::
+![CLI Pic6](./media/az-postgres-flexible-server-migration-update-cancel-help.png "CLI Pic6")
 
 ## Migration best practices
 
