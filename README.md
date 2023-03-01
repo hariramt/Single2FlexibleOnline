@@ -5,6 +5,6 @@ To understand how the migration tool works, please refer to the Concept document
 ## Initiate Online migration
 Two avenues are possible to perform the Online migration. Select the option that suits your requirement to follow the steps necessary:
 
-# [**Using the Azure Portal**](./single2flexibleonline-migrate-using-the-azure-portal.md)
-
+<!--- [**Using the Azure Portal**](./single2flexibleonline-migrate-using-the-azure-portal.md)
+--->
 [**Using the Azure CLI**](./single2flexibleonline-migrate-using-the-azure-cli.md)
