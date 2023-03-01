@@ -64,7 +64,11 @@ az postgres flexible-server migration --help
 
 The above command gives you the following output:
 
+<!---
 :::image type="content" source="./media/az-postgres-flexible-server-migration-help.png" alt-text="Screenshot of Azure Command Line Interface help." lightbox="./media/az-postgres-flexible-server-migration-help.png":::
+--->
+
+![CLI Pic1](./media/az-postgres-flexible-server-migration-help.png "CLI Pic1")
 
 The output lists the supported migration commands, along with their actions. Let's look at these commands in detail.
 
