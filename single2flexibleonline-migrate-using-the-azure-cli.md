@@ -187,7 +187,12 @@ For example:
 az postgres flexible-server migration update --subscription 11111111-1111-1111-1111-111111111111 --resource-group my-learning-rg --name myflexibleserver --migration-name CLIMigrationExample --cutover
 ```
 
-Before initiating cutover it is important to ensure that writes to the source are stopped and Pending changes to be written to the Target are zero. This information can be obtained using the [migration show command](#monitor-the-migration).
+Before initiating cutover it is important to ensure that:
+- Writes to the source are stopped
+-`latency` parameter decreases to less than 300 seconds (5 minutes)
+
+`latency` parameter indicates when the target last synced up with the source. For example, here it is 201 and 202 for the two databses as shown in the picture below, it means that the changes that have occurred in the last ~200 seconds at the source are yet to be synced to the target. At this point, writes to the source can be stopped and cutover initiated. In case there is heavy traffic at the source, it is recommended to stop writes first so that `latency` can decrease below 300 and then cutover is initiated. The Cutover operation applies all pending changes from the Source to the Target and completes the migration.
+The `latency` information can be obtained using the [migration show command](#monitor-the-migration).
 Here's a snapshot of the migration before initiating the cutover:
 
 ![CLI Pic3](./media/az-postgres-flexible-server-migration-cutover.png "CLI Pic3")
