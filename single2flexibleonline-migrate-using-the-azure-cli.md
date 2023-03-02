@@ -15,7 +15,7 @@ ms.custom: seo-lt-2023
 You can perform Online migration of an instance of Azure Database for PostgreSQL – Single Server to Azure Database for PostgreSQL – Flexible Server by using the Azure Command Line Interface (CLI). In this tutorial, we perform Online migration of a sample database from an Azure Database for PostgreSQL single server to a PostgreSQL flexible server using the Azure CLI.
 
 >[!NOTE]
-> The migration tool is in preview.
+> The Online migration mode is in preview.
 
 In this tutorial, you learn about:
 
@@ -153,7 +153,7 @@ The `create` parameters that go into the json file format are as shown below:
 Note these important points for the command response:
 
 - As soon as the `create` command is triggered, the migration moves to the `InProgress` state and the `PerformingPreRequisiteSteps` substate. The migration workflow takes a couple of minutes to deploy the migration infrastructure and setup connections between the source and target.
-- If **Online migration** is selected, it requires **Logical replication** to be turned on in the source Single server. If it is not turned on, the migration movies into the `WaitingForUserAction` state and the `WaitingForLogicalReplicationSetupRequestOnSourceDB` substate. User should enable logical replication on the Source single server to advance from this state. Note that this action requires a restart of the Source single server. Logical replication can be turned on in the Single Server portal under `Replication` or through CLI using the [`--setup-replication` command](#setup-replication).
+- If **Online migration** is selected, it requires **Logical replication** to be turned on in the source Single server. If it is not turned on, the migration movies into the `WaitingForUserAction` state and the `WaitingForLogicalReplicationSetupRequestOnSourceDB` substate. User should enable logical replication on the Source single server to advance from this state. Note that this action requires a restart of the Source single server. Logical replication can be turned on through CLI using the [`--setup-replication` command](#setup-replication).
 - After the `PerformingPreRequisiteSteps` substate is completed, the migration moves to the substate of `Migrating Data`, where the Cloning/Copying of the databases take place.
 - Each database migrated has its own section with all migration details, such as table count, incremental inserts, deletions, and pending bytes.
 - The time that the `Migrating Data` substate takes to finish depends on the size of databases that are migrated.
@@ -301,4 +301,4 @@ The command gives you the following output:
 
 ## Migration best practices
 
-- For a successful end-to-end migration, follow the post-migration steps in [Migrate from Azure Database for PostgreSQL Single Server to Flexible Server](https://learn.microsoft.com/azure/postgresql/migrate/concepts-single-to-flexible#best-practices).
+For a successful end-to-end migration, follow the post-migration steps in [Migrate from Azure Database for PostgreSQL Single Server to Flexible Server](https://learn.microsoft.com/azure/postgresql/migrate/concepts-single-to-flexible#best-practices). After you complete the preceding steps, you can change your application code to point database connection strings to Flexible Server. You can then start using the target as the primary database server.
