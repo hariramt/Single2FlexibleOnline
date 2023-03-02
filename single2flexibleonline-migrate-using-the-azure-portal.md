@@ -83,9 +83,9 @@ After deploying the Flexible Server, follow the steps 3 to 5 under [Configure th
 
 The first tab is **Setup**. Just in case you missed it, allowlist all required extensions as shown in [Migrate from Azure Database for PostgreSQL Single Server to Flexible Server](https://learn.microsoft.com/azure/postgresql/migrate/concepts-single-to-flexible#allow-list-required-extensions). It is important to allowlist the extensions before you initiate a migration using this tool.
 
-![Portal Pic6](./media/single-to-flex-setup.png "Portal Pic6")
+![Portal Pic7](./media/single-to-flex-setup.png "Portal Pic7")
 
-**Migration name** is the unique identifier for each migration to this Flexible Server target. This field accepts only alphanumeric characters and doesn't accept any special characters except a hyphen (-). The name can't start with a hyphen and should be unique for a target server. No two migrations to the same Flexible Server target can have the same name.
+In the Setup tab, you have to enter a name for the Migration task. **Migration name** is the unique identifier for each migration to this Flexible Server target. This field accepts only alphanumeric characters and doesn't accept any special characters except a hyphen (-). The name can't start with a hyphen and should be unique for a target server. No two migrations to the same Flexible Server target can have the same name.
 
 Select the **Next** button.
 
@@ -137,9 +137,6 @@ After you select the **Create** button, a notification appears in a few seconds 
 
 The migrations are in the descending order of migration start time with the most recent migration on top.You can use the refresh button to refresh the status of the migrations.
 Select the migration name in the grid to see the details of that migration.
-
-![Portal Pic11](./media/azure-portal-migration-in-progress.png "Portal Pic11")
-
 As soon as the migration is created, the migration moves to the **InProgress** state and **PerformingPreRequisiteSteps** substate. It takes 2-3 minutes for the migration workflow to set up the migration infrastructure and network connections.
 
 If **Online migration** is selected, it requires **Logical replication** to be turned on in the source Single server. If it is not turned on, the migration movies into the `WaitingForUserAction` state and the `WaitingForLogicalReplicationSetupRequestOnSourceDB` substate. User should enable logical replication on the Source single server to advance from this state. Note that this action requires a restart of the Source single server. Logical replication can be turned on through **Replication** menu option in the source Single server portal page as shown below.
