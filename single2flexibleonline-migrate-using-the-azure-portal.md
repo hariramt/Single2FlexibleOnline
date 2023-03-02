@@ -155,7 +155,7 @@ Before initiating cutover it is important to ensure that:
 - Writes to the source are stopped
 -`Latency (minutes)` parameter decreases to less than 5 minutes (300 seconds)
 
-`Latency (minutes)` parameter indicates when the target last synced up with the source. For example, here it is 2 and 2.016666 for the two databses as shown in the picture below, it means that the changes that have occurred in the last ~2 minutes at the source are yet to be synced to the target. At this point, writes to the source can be stopped and cutover initiated. In case there is heavy traffic at the source, it is recommended to stop writes first so that `Latency (minutes)` can decrease below 5 minutes and then cutover is initiated. The Cutover operation applies all pending changes from the Source to the Target and completes the migration.
+`Latency (minutes)` parameter indicates when the target last synced up with the source. For example, here it is 2 and 2.016666 for the two databases as shown in the picture below, it means that the changes that have occurred in the last ~2 minutes at the source are yet to be synced to the target. At this point, writes to the source can be stopped and cutover initiated. In case there is heavy traffic at the source, it is recommended to stop writes first so that `Latency (minutes)` can decrease below 5 minutes and then cutover is initiated. The Cutover operation applies all pending changes from the Source to the Target and completes the migration.
 The `Latency (minutes)` information can be obtained from the migration details screen as shown below:
 
 ![Portal Pic14](./media/azure-portal-db-migration-cutover.png "Portal Pic14")
@@ -176,7 +176,7 @@ The following tables describe the migration states and substates.
 | ---- | ---- |
 | `InProgress` | The migration infrastructure is set up, or the actual data migration is in progress. |
 | `WaitingForUserAction` | The migration task is waiting for user input/action. |
-| `Canceled` | The migration is canceled or deleted. |
+| `Canceled` | The migration is cancelled or deleted. |
 | `Failed` | The migration has failed. |
 | `Succeeded` | The migration has succeeded and is complete. |
 
@@ -194,7 +194,7 @@ The following tables describe the migration states and substates.
 You can cancel any ongoing migrations. To cancel a migration, it must be in the **InProgress** state. You can't cancel a migration that's in the **Succeeded** or **Failed** state.
 
 You can choose multiple ongoing migrations at once and cancel them.
-Cancelling a migration stops further migration activity on your target server. It doesn't drop or roll back any changes on your target server from the migration attempts. Be sure to drop the databases on your target server involved in a canceled migration.
+Cancelling a migration stops further migration activity on your target server. It doesn't drop or roll back any changes on your target server from the migration attempts. Be sure to drop the databases on your target server involved in a cancelled migration.
 
 ## Migration best practices
 

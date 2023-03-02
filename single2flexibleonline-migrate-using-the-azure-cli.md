@@ -98,7 +98,7 @@ az postgres flexible-server migration create [--subscription]
 |`name` | Name of the Flexible Server target. |
 |`migration-name` | Unique identifier to migrations attempted to Flexible Server. This field accepts only alphanumeric characters and does not accept any special characters, except a hyphen (`-`). The name can't start with `-`, and no two migrations to a Flexible Server target can have the same name. |
 |`properties` | Absolute path to a JSON file that has the information about the Single Server source. |
-|`migration-mode` | 'offline' or 'online' are the accepted values. Use online for Online migration. Not including this (parameter,value) results in offline moigration by default. |
+|`migration-mode` | 'offline' or 'online' are the accepted values. Use online for Online migration. Not including this (parameter,value) results in offline migration by default. |
 
 For example:
 
@@ -143,7 +143,7 @@ The `create` parameters that go into the json file format are as shown below:
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | `SourceDBServerResourceId` | Required |  This parameter is the resource ID of the Single Server source and is mandatory. |
-| `SecretParameters` | Required | This parameter lists passwords for admin users for both the Single Server source and the Flexible Server target, along with the Azure Active Directory app credentials. These passwords help to authenticate against the source and target servers. They also help in checking proper authorization access to the resources.
+| `SecretParameters` | Required | This parameter lists passwords for admin users for both the Single Server source and the Flexible Server target. These passwords help to authenticate against the source and target servers. They also help in checking proper authorization access to the resources.
 | `DBsToMigrate` | Required | Specify the list of databases that you want to migrate to Flexible Server. You can include a maximum of eight database names at a time. |
 | `OverwriteDBsinTarget` | Required | When set to true (default), if the target server happens to have an existing database with the same name as the one you're trying to migrate, migration tool automatically overwrites the database. |
 | `SetupLogicalReplicationOnSourceDBIfNeeded` | Optional | You can enable logical replication on the source server automatically by setting this property to `true`. This change in the server settings requires a server restart with a downtime of two to three minutes. |
@@ -173,7 +173,7 @@ For example:
 az postgres flexible-server migration update --subscription 11111111-1111-1111-1111-111111111111 --resource-group my-learning-rg --name myflexibleserver --migration-name CLIMigrationExample --setup-replication
 ```
 
-This command is required to advance the migration is the flexible server is waiting in the `WaitingForLogicalReplicationSetupRequestOnSourceDB` state.
+This command is required to advance the migration when the flexible server is waiting in the `WaitingForLogicalReplicationSetupRequestOnSourceDB` state.
 
 ![CLI Pic7](./media/az-postgres-flexible-server-migration-logical-replication.png "CLI Pic7")
 
@@ -191,7 +191,7 @@ Before initiating cutover it is important to ensure that:
 - Writes to the source are stopped
 -`latency` parameter decreases to less than 300 seconds (5 minutes)
 
-`latency` parameter indicates when the target last synced up with the source. For example, here it is 201 and 202 for the two databses as shown in the picture below, it means that the changes that have occurred in the last ~200 seconds at the source are yet to be synced to the target. At this point, writes to the source can be stopped and cutover initiated. In case there is heavy traffic at the source, it is recommended to stop writes first so that `latency` can decrease below 300 and then cutover is initiated. The Cutover operation applies all pending changes from the Source to the Target and completes the migration.
+`latency` parameter indicates when the target last synced up with the source. For example, here it is 201 and 202 for the two databases as shown in the picture below, it means that the changes that have occurred in the last ~200 seconds at the source are yet to be synced to the target. At this point, writes to the source can be stopped and cutover initiated. In case there is heavy traffic at the source, it is recommended to stop writes first so that `latency` can decrease below 300 and then cutover is initiated. The Cutover operation applies all pending changes from the Source to the Target and completes the migration.
 The `latency` information can be obtained using the [migration show command](#monitor-the-migration).
 Here's a snapshot of the migration before initiating the cutover:
 
@@ -222,7 +222,7 @@ az postgres flexible-server migration list [--subscription]
 
 The `filter` parameter has two options:
 
-- `Active`: Lists the current active migration attempts (in progress) into the target server. It does not include the migrations that have reached a failed, canceled, or succeeded state.
+- `Active`: Lists the current active migration attempts (in progress) into the target server. It does not include the migrations that have reached a failed, cancelled, or succeeded state.
 - `All`: Lists all the migration attempts into the target server. This includes both the active and past migrations, regardless of the state.
 
 For more information about this command, use the `help` parameter:
@@ -259,7 +259,7 @@ The following tables describe the migration states and substates.
 | ---- | ---- |
 | `InProgress` | The migration infrastructure is set up, or the actual data migration is in progress. |
 | `WaitingForUserAction` | The migration task is waiting for user input/action. |
-| `Canceled` | The migration is canceled or deleted. |
+| `Canceled` | The migration is cancelled or deleted. |
 | `Failed` | The migration has failed. |
 | `Succeeded` | The migration has succeeded and is complete. |
 
