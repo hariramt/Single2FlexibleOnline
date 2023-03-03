@@ -139,9 +139,7 @@ The migrations are in the descending order of migration start time with the most
 Select the migration name in the grid to see the details of that migration.
 As soon as the migration is created, the migration moves to the **InProgress** state and **PerformingPreRequisiteSteps** substate. It takes 2-3 minutes for the migration workflow to set up the migration infrastructure and network connections.
 
-If **Online migration** is selected, it requires **Logical replication** to be turned on in the source Single server. If it is not turned on, the migration movies into the `WaitingForUserAction` state and the `WaitingForLogicalReplicationSetupRequestOnSourceDB` substate. User should enable logical replication on the Source single server to advance from this state. Note that this action requires a restart of the Source single server. Logical replication can be turned on through **Replication** menu option in the source Single server portal page as shown below.
-
-![Portal Pic12](./media/azure-portal-single-replication.png "Portal Pic12")
+If **Online migration** is selected, it requires **Logical replication** to be turned on in the source Single server. If it is not turned on, the migration tool automatically turns on logical replication at the source Single server. Note that this action will restart the source single server.
 
 After the **PerformingPreRequisiteSteps** substate is completed, the migration moves to the substate of **Migrating Data** when the Cloning/Copying of the databases takes place. The time for migration to complete depends on the size and shape of databases that you are migrating. If the data is mostly evenly distributed across all the tables, the migration is quick. Skewed table sizes take a relatively longer time.
 
@@ -183,7 +181,6 @@ The following tables describe the migration states and substates.
 | Migration substate | Description |
 | ----  | ---- |
 | `PerformingPreRequisiteSteps` | Infrastructure is set up and is prepped for data migration. |
-| `WaitingForLogicalReplicationSetupRequestOnSourceDB` | The migration task is waiting for the user to setup replication on the source Single server. |
 | `WaitingForCutoverTrigger` | The migration task is waiting for the user to cutover the migration so it can move to completed state. |
 | `MigratingData` | Data migration is in progress. |
 | `CompletingMigration` | Migration cutover is in progress. |
