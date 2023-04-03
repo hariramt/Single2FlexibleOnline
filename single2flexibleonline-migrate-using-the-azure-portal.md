@@ -169,7 +169,7 @@ Once the migration moves to the **Succeeded** state, migration of schema and dat
 
 ![Portal Pic16](./media/azure-portal-migration-grid-completed.png "Portal Pic16")
 
-After the migration has moved to the **Succeeded** state, follow the post-migration steps in [Migrate from Azure Database for PostgreSQL Single Server to Flexible Server](./concepts-single-to-flexible.md#post-migration).
+After the migration has moved to the **Succeeded** state, follow the post-migration steps in [Migrate from Azure Database for PostgreSQL Single Server to Flexible Server](https://learn.microsoft.com/azure/postgresql/migrate/concepts-single-to-flexible#post-migration).
 
 The following tables describe the migration states and substates.
 
