@@ -154,9 +154,9 @@ The migration moves to the **Succeeded** state as soon as the **Migrating Data**
 
 Before initiating cutover it is important to ensure that:
 - Writes to the source are stopped
--`Latency (minutes)` parameter decreases to less than 5 minutes (300 seconds)
+-`Latency (minutes)` parameter is 0 or close to 0
 
-`Latency (minutes)` parameter indicates when the target last synced up with the source. For example, here it is 2 and 2.016666 for the two databases as shown in the picture below, it means that the changes that have occurred in the last ~2 minutes at the source are yet to be synced to the target. At this point, writes to the source can be stopped and cutover initiated. In case there is heavy traffic at the source, it is recommended to stop writes first so that `Latency (minutes)` can decrease below 5 minutes and then cutover is initiated. The Cutover operation applies all pending changes from the Source to the Target and completes the migration.
+`Latency (minutes)` parameter indicates when the target last synced up with the source. For example, here it is 2 and 2.016666 for the two databases as shown in the picture below, it means that the changes that have occurred in the last ~2 minutes at the source are yet to be synced to the target. At this point, writes to the source can be stopped and cutover initiated. In case there is heavy traffic at the source, it is recommended to stop writes first so that `Latency (minutes)` can come close to 0 and then cutover is initiated. The Cutover operation applies all pending changes from the Source to the Target and completes the migration. If you trigger a "Cutover" even with non-zero `Latency`, the replication will not stop immediately. Cutover will finish once all the data on source until the cutover point is applied on the target. Say a latency was 15 minutes at cutover point, so all the change data in the last 15 minutes will be applied on the target. Time taken will depend on the backlog of changes occurred in the last 15 minutes. Hence, it is recommended that the latency goes to zero or near zero, before triggering the cutover. 
 The `Latency (minutes)` information can be obtained from the migration details screen as shown below:
 
 ![Portal Pic14](./media/azure-portal-db-migration-cutover.png "Portal Pic14")
