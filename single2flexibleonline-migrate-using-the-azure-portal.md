@@ -43,7 +43,7 @@ To complete this tutorial, you need to:
 
 ## Video
 
-[!VIDEO https://github.com/hariramt/Single2FlexibleOnline/blob/main/media/S2F%20Portal%20migration.mp4]
+<video src='https://github.com/hariramt/Single2FlexibleOnline/blob/main/media/S2F%20Portal%20migration.mp4' width=180/>
 
 ## Configure the migration task
 
