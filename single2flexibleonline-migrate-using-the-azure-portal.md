@@ -41,6 +41,10 @@ To complete this tutorial, you need to:
 
 2. Allowlist all required extensions as shown in [Migrate from Azure Database for PostgreSQL Single Server to Flexible Server](https://learn.microsoft.com/azure/postgresql/migrate/concepts-single-to-flexible#allow-list-required-extensions). It is important to allowlist the extensions before you initiate a migration using this tool.
 
+## Video
+
+[!VIDEO https://github.com/hariramt/Single2FlexibleOnline/blob/main/media/S2F%20Portal%20migration.mp4]
+
 ## Configure the migration task
 
 The migration tool comes with a simple, wizard-based experience on the Azure portal. Here's how to start:
