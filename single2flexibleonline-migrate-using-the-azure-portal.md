@@ -49,7 +49,7 @@ The migration tool comes with a simple, wizard-based experience on the Azure por
 
 2. Go to your Azure Database for PostgreSQL Flexible Server target.
 
-3. In the **Overview** tab of the Flexible Server, on the left menu, scroll down to **Migration (preview)** and select it.
+3. In the **Overview** tab of the Flexible Server, on the left menu, scroll down to **Migration** and select it.
 
     ![Portal Pic1](./media/flexible-overview.png "Portal Pic1")
 
