@@ -2,6 +2,12 @@
 
 To understand how the migration tool works, please refer to the Concept documentation [**here**](https://learn.microsoft.com/azure/postgresql/migrate/concepts-single-to-flexible)
 
+## Prerequisite - Setup Logical Replication
+
+- Set "Azure replication support" to "Logical" (don't restart yet)
+- Set max_wal_senders and max_replication_slots to the number of databases you want to migrate and now restart the server.
+- For PostreSQL 9.5 and 9.6 we have to explicitly allow replication connection. To enable that, add a firewall entry to allowlist connection from target. Make sure the firewall rule name has _replrule suffix. This step isn't required PostgreSQL 10 and 11.
+
 ## Start your Online migration
 Two avenues are possible to perform the Online migration. Select the option that suits your requirement and follow the steps necessary:
 
